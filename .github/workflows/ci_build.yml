@@ -62,8 +62,8 @@ jobs:
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         shell: bash
         env:
-          GIT_ACTOR: ${{ github.actor }}
-          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_ACTOR: ${{ secrets.GIT_ACTOR }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           ./gradlew assembleCanary
           echo "IS_DEBUG=false" >> $GITHUB_ENV
@@ -72,8 +72,8 @@ jobs:
         if: github.event_name == 'pull_request'
         shell: bash
         env:
-          GIT_ACTOR: ${{ github.actor }}
-          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_ACTOR: ${{ secrets.GIT_ACTOR }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           ./gradlew assembleDebug
           echo "IS_DEBUG=true" >> $GITHUB_ENV
