@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2026 HyperCeiler Contributions
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:myLocation="@string/nav_island_layout_title"
+    app:quick_restart="com.android.systemui">
+
+    <!-- ── Pill shape ─────────────────────────────────────────────────────── -->
+    <PreferenceCategory android:title="@string/nav_island_layout_title">
+
+        <!-- Pill width: 200–400 dp -->
+        <SeekBarPreferenceCompat
+            app:defaultValue="320"
+            android:key="prefs_key_nav_island_pill_width"
+            android:summary="@string/nav_island_pill_width_summary"
+            android:title="@string/nav_island_pill_width"
+            app:format="%s dp"
+            app:maxValue="400"
+            app:minValue="200"
+            app:showSeekBarValue="true"
+            app:stepValue="4" />
+
+        <!-- Corner radius: 8–48 dp -->
+        <SeekBarPreferenceCompat
+            app:defaultValue="28"
+            android:key="prefs_key_nav_island_pill_corner_radius"
+            android:summary="@string/nav_island_pill_corner_radius_summary"
+            android:title="@string/nav_island_pill_corner_radius"
+            app:format="%s dp"
+            app:maxValue="48"
+            app:minValue="8"
+            app:showSeekBarValue="true"
+            app:stepValue="2" />
+
+    </PreferenceCategory>
+
+    <!-- ── Bars ───────────────────────────────────────────────────────────── -->
+    <PreferenceCategory android:title="@string/nav_island_bar_order">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="prefs_key_nav_island_bar_brightness_enable"
+            android:title="@string/nav_island_bar_brightness_enable" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="prefs_key_nav_island_bar_volume_enable"
+            android:title="@string/nav_island_bar_volume_enable" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:dependency="prefs_key_nav_island_bar_volume_enable"
+            android:key="prefs_key_nav_island_bar_volume_smart_detect"
+            android:summary="@string/nav_island_bar_volume_smart_detect_summary"
+            android:title="@string/nav_island_bar_volume_smart_detect" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:dependency="prefs_key_nav_island_bar_volume_enable"
+            android:key="prefs_key_nav_island_bar_spatial_audio"
+            android:title="@string/nav_island_bar_spatial_audio" />
+
+        <fan.preference.DropDownPreference
+            android:defaultValue="0"
+            android:key="prefs_key_nav_island_bar_order"
+            android:title="@string/nav_island_bar_order"
+            app:entries="@array/nav_island_bar_order_entries"
+            app:entryValues="@array/nav_island_bar_order_values" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

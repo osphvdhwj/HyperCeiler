@@ -31,6 +31,11 @@
         android:title="@string/system_ui_navigation_title" />
 
     <Preference
+        android:fragment="com.sevtinge.hyperceiler.hooker.systemui.navIsland.NavIslandSettings"
+        android:title="@string/nav_island_title"
+        android:summary="@string/nav_island_summary" />
+
+    <Preference
         android:fragment="com.sevtinge.hyperceiler.hooker.systemui.ControlCenterSettings"
         android:title="@string/system_ui_controlcenter_title" />
 

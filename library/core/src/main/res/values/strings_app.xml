@@ -649,6 +649,92 @@
     <string name="system_ui_navigation_custom_height_land">Horizontal navigation height</string>
     <string name="system_ui_navigation_frame_custom_height">Vertical navigation frame height</string>
     <string name="system_ui_navigation_frame_custom_height_land">Horizontal navigation frame height</string>
+
+    <!-- Nav Island -->
+    <string name="nav_island_title">Nav Island</string>
+    <string name="nav_island_summary">Gesture-driven action center with glassmorphism</string>
+
+    <!-- Nav Island — Glass Effect -->
+    <string name="nav_island_glass_title">Glass Effect</string>
+    <string name="nav_island_enable">Enable Nav Island</string>
+    <string name="nav_island_enable_summary">Transform navigation pill into an action center</string>
+    <string name="nav_island_blur_radius">Blur radius</string>
+    <string name="nav_island_blur_radius_summary">Frosted glass blur intensity (dp)</string>
+    <string name="nav_island_opacity">Opacity</string>
+    <string name="nav_island_opacity_summary">Overall transparency of the pill</string>
+    <string name="nav_island_texture">Glass texture</string>
+    <string name="nav_island_texture_smooth">Smooth</string>
+    <string name="nav_island_texture_frosted">Frosted</string>
+    <string name="nav_island_texture_ribbed">Ribbed</string>
+    <string name="nav_island_base_color">Base tint color</string>
+    <string name="nav_island_base_color_dark">Base tint color (dark mode)</string>
+
+    <!-- Nav Island — Edge Effects -->
+    <string name="nav_island_edge_title">Edge Effects</string>
+    <string name="nav_island_edge_border_enable">Show border</string>
+    <string name="nav_island_edge_border_width">Border width</string>
+    <string name="nav_island_edge_border_color">Border color</string>
+    <string name="nav_island_edge_glow_enable">Show glow</string>
+    <string name="nav_island_edge_glow_radius">Glow radius</string>
+    <string name="nav_island_edge_glow_color">Glow color</string>
+    <string name="nav_island_edge_shadow_enable">Show shadow</string>
+    <string name="nav_island_edge_shadow_depth">Shadow depth</string>
+
+    <!-- Nav Island — Layout -->
+    <string name="nav_island_layout_title">Layout</string>
+    <string name="nav_island_pill_width">Pill width</string>
+    <string name="nav_island_pill_width_summary">Width of the expanded pill (dp)</string>
+    <string name="nav_island_pill_corner_radius">Corner radius</string>
+    <string name="nav_island_pill_corner_radius_summary">Roundness of pill corners</string>
+    <string name="nav_island_bar_brightness_enable">Show brightness bar</string>
+    <string name="nav_island_bar_volume_enable">Show volume bar</string>
+    <string name="nav_island_bar_volume_smart_detect">Smart volume detection</string>
+    <string name="nav_island_bar_volume_smart_detect_summary">Show only currently-active audio streams</string>
+    <string name="nav_island_bar_spatial_audio">Show Spatial Audio button</string>
+    <string name="nav_island_bar_order">Bar order</string>
+    <string name="nav_island_bar_order_brightness_first">Brightness first</string>
+    <string name="nav_island_bar_order_volume_first">Volume first</string>
+
+    <!-- Nav Island — Colors -->
+    <string name="nav_island_colors_title">Colors</string>
+    <string name="nav_island_color_wallpaper_extract">Extract colors from wallpaper</string>
+    <string name="nav_island_color_wallpaper_extract_summary">Auto-extract dominant colors</string>
+    <string name="nav_island_color_wallpaper_mode">Wallpaper extraction trigger</string>
+    <string name="nav_island_color_wallpaper_mode_on_change">On wallpaper change</string>
+    <string name="nav_island_color_wallpaper_mode_on_launch">On app launch</string>
+    <string name="nav_island_color_wallpaper_mode_on_demand">Manual only</string>
+    <string name="nav_island_color_label_text">Label text color</string>
+    <string name="nav_island_color_value_text">Value text color</string>
+    <string name="nav_island_color_icon">Icon color</string>
+    <string name="nav_island_color_slider_filled">Slider fill color</string>
+    <string name="nav_island_color_slider_unfilled">Slider track color</string>
+    <string name="nav_island_color_button_bg">Button background color</string>
+
+    <!-- Nav Island — Animations -->
+    <string name="nav_island_anim_title">Animations</string>
+    <string name="nav_island_anim_expansion_duration">Expansion duration</string>
+    <string name="nav_island_anim_expansion_duration_summary">How long the pill takes to expand (ms)</string>
+    <string name="nav_island_anim_easing">Easing curve</string>
+    <string name="nav_island_anim_easing_emphasized">Emphasized (Material)</string>
+    <string name="nav_island_anim_easing_standard">Standard</string>
+    <string name="nav_island_anim_easing_decelerate">Decelerate</string>
+    <string name="nav_island_anim_easing_spring">Spring</string>
+    <string name="nav_island_anim_speed_multiplier">Animation speed</string>
+    <string name="nav_island_anim_speed_multiplier_summary">Scale all durations (50–200%%)</string>
+    <string name="nav_island_anim_haptic">Haptic feedback</string>
+    <string name="nav_island_anim_haptic_summary">Vibrate on expansion and slider steps</string>
+
+    <!-- Nav Island — Profiles -->
+    <string name="nav_island_profiles_title">Profiles</string>
+    <string name="nav_island_profile_save">Save current as profile</string>
+    <string name="nav_island_profile_save_summary">Create a named snapshot of all settings</string>
+    <string name="nav_island_profile_export">Export profile</string>
+    <string name="nav_island_profile_export_summary">Save current profile as a JSON file</string>
+    <string name="nav_island_profile_import">Import profile</string>
+    <string name="nav_island_profile_import_summary">Load a profile from a JSON file</string>
+    <string name="nav_island_profile_reset">Reset to defaults</string>
+    <string name="nav_island_profile_reset_summary">Restore all Nav Island settings to factory defaults</string>
+
     <string name="system_ui_statusbar_title">Status bar</string>
     <string name="system_ui_statusbar_iconmanage_title">Manage icons</string>
     <string name="system_ui_statusbar_network_speed_indicator_title">Manage network speed indicator</string>

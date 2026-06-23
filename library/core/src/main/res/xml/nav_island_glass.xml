@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2026 HyperCeiler Contributions
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:myLocation="@string/nav_island_glass_title"
+    app:quick_restart="com.android.systemui">
+
+    <!-- ── Glass core ─────────────────────────────────────────────────────── -->
+    <PreferenceCategory android:title="@string/nav_island_glass_title">
+
+        <!-- Blur radius: 5–40 dp, continuous float -->
+        <SeekBarPreferenceCompat
+            app:defaultValue="800"
+            android:key="prefs_key_nav_island_blur_radius"
+            android:summary="@string/nav_island_blur_radius_summary"
+            android:title="@string/nav_island_blur_radius"
+            app:defaultValueTitle="@string/array_default"
+            app:dividerValue="100"
+            app:format="%.2f dp"
+            app:maxValue="4000"
+            app:minValue="500"
+            app:showSeekBarValue="true"
+            app:stepValue="50" />
+
+        <!-- Opacity: 0–100 % -->
+        <SeekBarPreferenceCompat
+            app:defaultValue="85"
+            android:key="prefs_key_nav_island_opacity"
+            android:summary="@string/nav_island_opacity_summary"
+            android:title="@string/nav_island_opacity"
+            app:format="%s %%"
+            app:maxValue="100"
+            app:minValue="0"
+            app:showSeekBarValue="true"
+            app:stepValue="1" />
+
+        <!-- Glass texture -->
+        <fan.preference.DropDownPreference
+            android:defaultValue="1"
+            android:key="prefs_key_nav_island_texture"
+            android:title="@string/nav_island_texture"
+            app:entries="@array/nav_island_texture_entries"
+            app:entryValues="@array/nav_island_texture_values" />
+
+        <!-- Base tint color — light mode -->
+        <ColorPickerPreference
+            android:defaultValue="268435455"
+            android:key="prefs_key_nav_island_base_color"
+            android:title="@string/nav_island_base_color" />
+
+        <!-- Base tint color — dark mode -->
+        <ColorPickerPreference
+            android:defaultValue="268435455"
+            android:key="prefs_key_nav_island_base_color_dark"
+            android:title="@string/nav_island_base_color_dark" />
+
+    </PreferenceCategory>
+
+    <!-- ── Edge effects ───────────────────────────────────────────────────── -->
+    <PreferenceCategory android:title="@string/nav_island_edge_title">
+
+        <!-- Border -->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_nav_island_edge_border_enable"
+            android:title="@string/nav_island_edge_border_enable" />
+
+        <SeekBarPreferenceCompat
+            app:defaultValue="10"
+            android:dependency="prefs_key_nav_island_edge_border_enable"
+            android:key="prefs_key_nav_island_edge_border_width"
+            android:title="@string/nav_island_edge_border_width"
+            app:dividerValue="10"
+            app:format="%.1f dp"
+            app:maxValue="50"
+            app:minValue="1"
+            app:showSeekBarValue="true"
+            app:stepValue="1" />
+
+        <ColorPickerPreference
+            android:defaultValue="-1"
+            android:dependency="prefs_key_nav_island_edge_border_enable"
+            android:key="prefs_key_nav_island_edge_border_color"
+            android:title="@string/nav_island_edge_border_color" />
+
+        <!-- Glow -->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_nav_island_edge_glow_enable"
+            android:title="@string/nav_island_edge_glow_enable" />
+
+        <SeekBarPreferenceCompat
+            app:defaultValue="80"
+            android:dependency="prefs_key_nav_island_edge_glow_enable"
+            android:key="prefs_key_nav_island_edge_glow_radius"
+            android:title="@string/nav_island_edge_glow_radius"
+            app:format="%s dp"
+            app:maxValue="200"
+            app:minValue="10"
+            app:showSeekBarValue="true"
+            app:stepValue="5" />
+
+        <ColorPickerPreference
+            android:defaultValue="-1"
+            android:dependency="prefs_key_nav_island_edge_glow_enable"
+            android:key="prefs_key_nav_island_edge_glow_color"
+            android:title="@string/nav_island_edge_glow_color" />
+
+        <!-- Shadow -->
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="prefs_key_nav_island_edge_shadow_enable"
+            android:title="@string/nav_island_edge_shadow_enable" />
+
+        <SeekBarPreferenceCompat
+            app:defaultValue="12"
+            android:dependency="prefs_key_nav_island_edge_shadow_enable"
+            android:key="prefs_key_nav_island_edge_shadow_depth"
+            android:title="@string/nav_island_edge_shadow_depth"
+            app:format="%s dp"
+            app:maxValue="40"
+            app:minValue="0"
+            app:showSeekBarValue="true"
+            app:stepValue="1" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

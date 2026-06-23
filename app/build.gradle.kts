@@ -46,7 +46,7 @@ android {
 
     defaultConfig {
         applicationId = namespace
-        minSdk = 35
+        minSdk = 34
         targetSdk = 36
         versionCode = gitVersionCode
         versionName = "2.6.164"

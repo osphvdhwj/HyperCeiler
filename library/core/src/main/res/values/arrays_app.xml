@@ -1018,4 +1018,53 @@
         <item>600000001</item>
         <item>620000001</item>
     </string-array>
+
+    <!-- Nav Island — glass texture -->
+    <string-array name="nav_island_texture_entries">
+        <item>@string/nav_island_texture_smooth</item>
+        <item>@string/nav_island_texture_frosted</item>
+        <item>@string/nav_island_texture_ribbed</item>
+    </string-array>
+    <string-array name="nav_island_texture_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Nav Island — bar order -->
+    <string-array name="nav_island_bar_order_entries">
+        <item>@string/nav_island_bar_order_brightness_first</item>
+        <item>@string/nav_island_bar_order_volume_first</item>
+    </string-array>
+    <string-array name="nav_island_bar_order_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <!-- Nav Island — wallpaper extraction trigger -->
+    <string-array name="nav_island_wallpaper_mode_entries">
+        <item>@string/nav_island_color_wallpaper_mode_on_change</item>
+        <item>@string/nav_island_color_wallpaper_mode_on_launch</item>
+        <item>@string/nav_island_color_wallpaper_mode_on_demand</item>
+    </string-array>
+    <string-array name="nav_island_wallpaper_mode_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Nav Island — animation easing curve -->
+    <string-array name="nav_island_easing_entries">
+        <item>@string/nav_island_anim_easing_emphasized</item>
+        <item>@string/nav_island_anim_easing_standard</item>
+        <item>@string/nav_island_anim_easing_decelerate</item>
+        <item>@string/nav_island_anim_easing_spring</item>
+    </string-array>
+    <string-array name="nav_island_easing_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
 </resources>

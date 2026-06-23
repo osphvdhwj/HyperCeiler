@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2026 HyperCeiler Contributions
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:myLocation="@string/nav_island_colors_title"
+    app:quick_restart="com.android.systemui">
+
+    <!-- ── Wallpaper extraction ───────────────────────────────────────────── -->
+    <PreferenceCategory android:title="@string/nav_island_color_wallpaper_extract">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="prefs_key_nav_island_color_wallpaper_extract"
+            android:summary="@string/nav_island_color_wallpaper_extract_summary"
+            android:title="@string/nav_island_color_wallpaper_extract" />
+
+        <fan.preference.DropDownPreference
+            android:defaultValue="2"
+            android:dependency="prefs_key_nav_island_color_wallpaper_extract"
+            android:key="prefs_key_nav_island_color_wallpaper_mode"
+            android:title="@string/nav_island_color_wallpaper_mode"
+            app:entries="@array/nav_island_wallpaper_mode_entries"
+            app:entryValues="@array/nav_island_wallpaper_mode_values" />
+
+    </PreferenceCategory>
+
+    <!-- ── Per-element colors ─────────────────────────────────────────────── -->
+    <PreferenceCategory android:title="@string/nav_island_colors_title">
+
+        <ColorPickerPreference
+            android:defaultValue="-1"
+            android:key="prefs_key_nav_island_color_label_text"
+            android:title="@string/nav_island_color_label_text" />
+
+        <ColorPickerPreference
+            android:defaultValue="-1"
+            android:key="prefs_key_nav_island_color_value_text"
+            android:title="@string/nav_island_color_value_text" />
+
+        <ColorPickerPreference
+            android:defaultValue="-1"
+            android:key="prefs_key_nav_island_color_icon"
+            android:title="@string/nav_island_color_icon" />
+
+        <ColorPickerPreference
+            android:defaultValue="-13041667"
+            android:key="prefs_key_nav_island_color_slider_filled"
+            android:title="@string/nav_island_color_slider_filled" />
+
+        <ColorPickerPreference
+            android:defaultValue="-5066062"
+            android:key="prefs_key_nav_island_color_slider_unfilled"
+            android:title="@string/nav_island_color_slider_unfilled" />
+
+        <ColorPickerPreference
+            android:defaultValue="536936448"
+            android:key="prefs_key_nav_island_color_button_bg"
+            android:title="@string/nav_island_color_button_bg" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

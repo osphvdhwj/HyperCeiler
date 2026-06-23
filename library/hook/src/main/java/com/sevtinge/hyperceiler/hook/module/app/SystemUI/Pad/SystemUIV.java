@@ -110,7 +110,7 @@ import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.network.New
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.strongtoast.HideStrongToast;
 import com.sevtinge.hyperceiler.hook.module.skip.StatusBarActions;
 
-@HookBase(targetPackage = "com.android.systemui", isPad = 1, targetSdk = 35)
+@HookBase(targetPackage = "com.android.systemui", isPad = 1, minSdk = 35, targetSdk = 35)
 public class SystemUIV extends BaseModule {
     @Override
     public void handleLoadPackage() {

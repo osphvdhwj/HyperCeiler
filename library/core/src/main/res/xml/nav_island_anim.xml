@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This file is part of HyperCeiler.
+  ~
+  ~ HyperCeiler is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ Copyright (C) 2023-2026 HyperCeiler Contributions
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:myLocation="@string/nav_island_anim_title"
+    app:quick_restart="com.android.systemui">
+
+    <PreferenceCategory android:title="@string/nav_island_anim_title">
+
+        <!-- Expansion duration: 100–500 ms -->
+        <SeekBarPreferenceCompat
+            app:defaultValue="350"
+            android:key="prefs_key_nav_island_anim_expansion_duration"
+            android:summary="@string/nav_island_anim_expansion_duration_summary"
+            android:title="@string/nav_island_anim_expansion_duration"
+            app:format="%s ms"
+            app:maxValue="500"
+            app:minValue="100"
+            app:showSeekBarValue="true"
+            app:stepValue="10" />
+
+        <!-- Easing curve -->
+        <fan.preference.DropDownPreference
+            android:defaultValue="0"
+            android:key="prefs_key_nav_island_anim_easing"
+            android:title="@string/nav_island_anim_easing"
+            app:entries="@array/nav_island_easing_entries"
+            app:entryValues="@array/nav_island_easing_values" />
+
+        <!-- Speed multiplier: 50–200 % -->
+        <SeekBarPreferenceCompat
+            app:defaultValue="100"
+            android:key="prefs_key_nav_island_anim_speed_multiplier"
+            android:summary="@string/nav_island_anim_speed_multiplier_summary"
+            android:title="@string/nav_island_anim_speed_multiplier"
+            app:format="%s %%"
+            app:maxValue="200"
+            app:minValue="50"
+            app:showSeekBarValue="true"
+            app:stepValue="5" />
+
+        <!-- Haptic feedback -->
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="prefs_key_nav_island_anim_haptic"
+            android:summary="@string/nav_island_anim_haptic_summary"
+            android:title="@string/nav_island_anim_haptic" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

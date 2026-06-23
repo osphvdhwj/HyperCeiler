@@ -35,10 +35,8 @@ import com.sevtinge.hyperceiler.hook.module.rules.systemui.UiLockApp;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.UnlockClipboard;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.ZenModeFix;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.base.api.MiuiStub;
-import com.sevtinge.hyperceiler.hook.module.rules.systemui.base.controlcenter.MediaControlBgFactory;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.base.lockscreen.Keyguard;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.controlcenter.AutoDismissExpandedPopupsHook;
-import com.sevtinge.hyperceiler.hook.module.rules.systemui.controlcenter.ControlCenterStyle;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.controlcenter.DisableDeviceManaged;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.controlcenter.ExpandNotificationKt;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.controlcenter.FiveGTile;
@@ -110,8 +108,6 @@ import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.all.Ic
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.all.StatusBarIcon;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.all.SwapWiFiAndMobileNetwork;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.all.WifiNetworkIndicator;
-import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.v.FocusNotifLyric;
-import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.v.HideFakeStatusBar;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.icon.v.WifiStandard;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.model.DualRowSignalHookV;
 import com.sevtinge.hyperceiler.hook.module.rules.systemui.statusbar.model.MobilePublicHookV;
@@ -126,11 +122,11 @@ import com.sevtinge.hyperceiler.hook.module.skip.StatusBarActions;
 
 import java.util.Objects;
 
-@HookBase(targetPackage = "com.android.systemui", isPad = 2, minSdk = 35, targetSdk = 35)
-public class SystemUIV extends BaseModule {
+@HookBase(targetPackage = "com.android.systemui", isPad = 2, maxSdk = 34)
+public class SystemUIA extends BaseModule {
     @Override
     public void handleLoadPackage() {
-        MiuiStub.createHook();
+        // MiuiStub not in HyperOS 1.x
 
         // PluginHelper
         initHook(NewPluginHelperKt.INSTANCE);
@@ -197,8 +193,6 @@ public class SystemUIV extends BaseModule {
 
         // 焦点歌词
         if (mPrefsMap.getBoolean("system_ui_statusbar_music_switch")) {
-            initHook(FocusNotifLyric.INSTANCE);
-            initHook(HideFakeStatusBar.INSTANCE, mPrefsMap.getBoolean("system_ui_statusbar_music_hide_clock"));
         }
 
         // 灵动舞台
@@ -241,7 +235,6 @@ public class SystemUIV extends BaseModule {
         initHook(new QQSGrid(), mPrefsMap.getBoolean("system_control_center_old_enable"));
         initHook(new AutoCollapse(), mPrefsMap.getBoolean("system_ui_control_auto_close"));
         initHook(RedirectToNotificationChannelSetting.INSTANCE, mPrefsMap.getBoolean("system_ui_control_center_redirect_notice"));
-        initHook(ControlCenterStyle.INSTANCE, mPrefsMap.getBoolean("system_control_center_unlock_old"));
         initHook(NotificationImportanceHyperOSFix.INSTANCE, mPrefsMap.getBoolean("system_settings_more_notification_settings"));
         initHook(new FixTilesList(), mPrefsMap.getBoolean("system_ui_control_center_fix_tiles_list"));
         initHook(new DisableTransparent(), mPrefsMap.getBoolean("system_ui_control_center_notification_disable_transparent"));
@@ -251,7 +244,6 @@ public class SystemUIV extends BaseModule {
         initHook(new ZenModeFix(), mPrefsMap.getBoolean("system_ui_control_center_zen_fix"));
 
         // Media Card
-        initHook(MediaControlBgFactory.INSTANCE, mPrefsMap.getStringAsInt("system_ui_control_center_media_control_background_mode", 0) != 0);
         initHook(CustomBackground.INSTANCE, mPrefsMap.getStringAsInt("system_ui_control_center_media_control_background_mode", 0) != 0);
         initHook(new MediaControlPanelBackgroundMix(), mPrefsMap.getStringAsInt("system_ui_control_center_media_control_background_mode", 0) == 5);
         initHook(new UnlockCustomActions(), mPrefsMap.getBoolean("system_ui_control_center_media_control_unlock_custom_actions"));
@@ -280,10 +272,10 @@ public class SystemUIV extends BaseModule {
         initHook(new VolumeMediaSteps(), mPrefsMap.getBoolean("system_framework_volume_media_steps_enable"));
 
         // 锁屏
-        initHook(CustomizeBottomButton.INSTANCE, Keyguard.getLeftButtonType() != 0 && !isMoreSmallVersion(200, 2f));
+        initHook(CustomizeBottomButton.INSTANCE, Keyguard.getLeftButtonType() != 0);
         initHook(new ScramblePIN(), mPrefsMap.getBoolean("system_ui_lock_screen_scramble_pin"));
         initHook(ChargingCVP.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_show_charging_cv"));
-        initHook(RemoveCamera.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_hide_camera") && !isMoreSmallVersion(200, 2f));
+        initHook(RemoveCamera.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_hide_camera"));
         initHook(LockScreenDoubleTapToSleep.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_double_lock"));
         initHook(NotificationShowOnKeyguard.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_unlock_notification_restrict"));
         initHook(KeepNotification.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_keep_notification"));
@@ -293,7 +285,7 @@ public class SystemUIV extends BaseModule {
         initHook(AllowThirdLockScreenUseFace.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_allow_third_face"));
         initHook(new DisableUnlockByBleToast(), mPrefsMap.getBoolean("system_ui_lock_screen_disable_unlock_by_ble_toast"));
         initHook(new LinkageAnimCustomer(), mPrefsMap.getBoolean("system_ui_lock_screen_linkage_anim"));
-        initHook(BlurButton.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_blur_button") && !isMoreSmallVersion(200, 2f));
+        initHook(BlurButton.INSTANCE, mPrefsMap.getBoolean("system_ui_lock_screen_blur_button"));
 
         initHook(DoubleTapToSleep.INSTANCE, mPrefsMap.getBoolean("system_ui_status_bar_double_tap_to_sleep"));
 
