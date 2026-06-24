@@ -44,5 +44,75 @@ public class NavIslandHook extends BaseModule {
                 }
             }
         });
+
+        // 1. Notification Interception & Integration
+        try {
+            XposedHelpers.findAndHookMethod(
+                "com.android.systemui.statusbar.phone.HeadsUpManagerPhone", 
+                mLoadPackageParam.classLoader, 
+                "showNotification", 
+                "com.android.systemui.statusbar.notification.collection.NotificationEntry", 
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        if (mPrefsMap.getBoolean("nav_island_notification_interception", true)) {
+                            Object entry = param.args[0];
+                            Object sbn = XposedHelpers.callMethod(entry, "getSbn");
+                            android.app.Notification notification = (android.app.Notification) XposedHelpers.callMethod(sbn, "getNotification");
+                            CharSequence tickerText = notification.tickerText;
+                            
+                            if (mNavIslandView != null && tickerText != null) {
+                                mNavIslandView.showNotification(tickerText.toString());
+                                // Suppress original headsup by preventing the original method from running
+                                param.setResult(null);
+                                XposedLogUtils.logI(TAG, "NavIslandHook: Intercepted HeadsUp Notification");
+                            }
+                        }
+                    }
+                }
+            );
+        } catch (Throwable t) {
+            XposedLogUtils.logI(TAG, "NavIslandHook: HeadsUpManagerPhone not found or failed to hook. " + t.getMessage());
+        }
+
+        // 2. Per-App Profiles (Monitor Foreground App)
+        try {
+            XposedHelpers.findAndHookMethod(
+                "com.android.systemui.shared.system.ActivityManagerWrapper", 
+                mLoadPackageParam.classLoader, 
+                "registerTaskStackListener", 
+                "com.android.systemui.shared.system.TaskStackChangeListener", 
+                new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        Object listener = param.args[0];
+                        XposedHelpers.findAndHookMethod(listener.getClass(), "onTaskStackChangedBackground", new XC_MethodHook() {
+                            @Override
+                            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                                // Since we don't have the exact package name easily here in background,
+                                // we can fetch the top activity component name from ActivityManagerWrapper
+                                Object amWrapper = XposedHelpers.callStaticMethod(
+                                    XposedHelpers.findClass("com.android.systemui.shared.system.ActivityManagerWrapper", mLoadPackageParam.classLoader), 
+                                    "getInstance"
+                                );
+                                Object runningTaskInfo = XposedHelpers.callMethod(amWrapper, "getRunningTask");
+                                if (runningTaskInfo != null && mNavIslandView != null) {
+                                    android.content.ComponentName topActivity = (android.content.ComponentName) XposedHelpers.getObjectField(runningTaskInfo, "topActivity");
+                                    if (topActivity != null) {
+                                        String packageName = topActivity.getPackageName();
+                                        // Update UI on main thread
+                                        mNavIslandView.post(() -> {
+                                            mNavIslandView.updatePerAppProfile(packageName);
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            );
+        } catch (Throwable t) {
+            XposedLogUtils.logI(TAG, "NavIslandHook: ActivityManagerWrapper not found or failed to hook. " + t.getMessage());
+        }
     }
 }

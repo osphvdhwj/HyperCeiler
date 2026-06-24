@@ -70,7 +70,6 @@ include(
     "app",
     ":library:hook",
     ":library:core",
-    ":library:provision",
     ":library:common",
     ":library:processor",
     ":library:hidden-api"

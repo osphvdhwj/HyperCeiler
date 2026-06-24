@@ -24,6 +24,7 @@ public class NavIslandView extends FrameLayout {
     private FrameLayout mPillContainer;
     private GradientDrawable mPillDrawable;
     private NavIslandContentContainer mContentContainer;
+    private android.widget.TextView mNotificationText;
     
     private android.view.GestureDetector mGestureDetector;
     private com.sevtinge.hyperceiler.hook.module.app.SystemUI.Phone.actions.ActionExecutor mActionExecutor;
@@ -54,6 +55,16 @@ public class NavIslandView extends FrameLayout {
         mPillContainer.addView(mContentContainer);
 
         addView(mPillContainer);
+        
+        mNotificationText = new android.widget.TextView(context);
+        mNotificationText.setTextColor(android.graphics.Color.WHITE);
+        mNotificationText.setTextSize(14f);
+        mNotificationText.setGravity(android.view.Gravity.CENTER);
+        mNotificationText.setVisibility(View.GONE);
+        FrameLayout.LayoutParams textParams = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        textParams.gravity = android.view.Gravity.CENTER;
+        mPillContainer.addView(mNotificationText, textParams);
         
         initView();
     }
@@ -259,6 +270,38 @@ public class NavIslandView extends FrameLayout {
             if (mWindowManager != null && isAttachedToWindow()) {
                 mWindowManager.updateViewLayout(this, mLayoutParams);
             }
+        }
+    }
+
+    public void showNotification(String tickerText) {
+        if (mNotificationText != null) {
+            mNotificationText.setText(tickerText);
+            mNotificationText.setVisibility(View.VISIBLE);
+            if (mContentContainer != null) mContentContainer.setVisibility(View.GONE);
+            
+            // Auto hide after 3 seconds
+            postDelayed(() -> {
+                if (mNotificationText != null) mNotificationText.setVisibility(View.GONE);
+                if (mContentContainer != null && mIsExpanded) mContentContainer.setVisibility(View.VISIBLE);
+            }, 3000);
+        }
+    }
+
+    public void updatePerAppProfile(String foregroundPackage) {
+        // Adjust pill behavior/macros based on foreground package
+        if (foregroundPackage == null) return;
+        
+        if (foregroundPackage.equals("com.android.camera")) {
+            // Immersive mode for camera
+            mPillContainer.setVisibility(View.GONE);
+        } else if (foregroundPackage.contains("youtube") || foregroundPackage.contains("video")) {
+            // Darker, smaller profile for media
+            mPillDrawable.setAlpha((int) (mAlpha * 0.5f));
+            mPillContainer.setVisibility(View.VISIBLE);
+        } else {
+            // Default behavior
+            mPillDrawable.setAlpha(mAlpha);
+            mPillContainer.setVisibility(View.VISIBLE);
         }
     }
 }
