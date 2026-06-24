@@ -53,7 +53,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         mavenLocal()
-        maven("https://maven.pkg.github.com/ReChronoRain/HyperCeiler") {
+        maven("https://maven.pkg.github.com/sevtinge/HyperCeiler") {
             credentials {
                 username = gprCredentials.user
                 password = gprCredentials.key
